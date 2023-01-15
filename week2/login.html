@@ -132,7 +132,10 @@
               })
               .then((res) => {
                 console.log(res.data);
-                document.cookie = `token=${res.data.token};expires=${res.data.expired};`;
+                const { token, expired } = res.data;
+                document.cookie = `token=${token};expires=${new Date(
+                  expired
+                )};`;
                 window.location = "./index.html";
               })
               .catch((err) => {
