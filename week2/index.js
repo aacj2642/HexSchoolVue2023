@@ -16,8 +16,7 @@ createApp({
       this.nowProduct = product;
     },
     checkAuth() {
-      let token = "";
-      token = document.cookie.replace(
+      const token = document.cookie.replace(
         /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
         "$1"
       );
