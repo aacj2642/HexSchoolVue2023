@@ -82,6 +82,7 @@ createApp({
         this.tempProduct.imagesUrl = [];
       }
       this.tempProduct.imagesUrl.push(this.tempImg);
+      this.tempImg = "";
     },
     removeImg() {
       const removeImgIndex = this.tempProduct.imagesUrl.indexOf(this.tempImg);
@@ -98,6 +99,8 @@ createApp({
           .post(url, { data: this.tempProduct })
           .then((res) => {
             alert(`新增 ${this.tempProduct.title} 成功`);
+            this.tempProduct = {};
+            this.tempImg = "";
             this.getProducts();
             this.productModal.hide();
           })
@@ -110,6 +113,7 @@ createApp({
           .put(url, { data: this.tempProduct })
           .then((res) => {
             alert(`修改 ${this.tempProduct.title} 成功`);
+            this.tempImg = "";
             this.getProducts();
             this.productModal.hide();
           })
