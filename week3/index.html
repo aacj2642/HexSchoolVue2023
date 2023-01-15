@@ -29,8 +29,6 @@
           <div class="text-end mt-4">
             <button
               class="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#productModal"
               @click="showCreateProduct()"
             >
               建立新的產品
@@ -64,8 +62,6 @@
                     <button
                       type="button"
                       class="btn btn-outline-primary btn-sm"
-                      data-bs-toggle="modal"
-                      data-bs-target="#productModal"
                       @click="showEditProduct(product)"
                     >
                       編輯
@@ -73,8 +69,6 @@
                     <button
                       type="button"
                       class="btn btn-outline-danger btn-sm"
-                      data-bs-toggle="modal"
-                      data-bs-target="#delProductModal"
                       @click="setDeleteProduct(product)"
                     >
                       刪除

@@ -62,6 +62,7 @@ createApp({
     },
     showCreateProduct() {
       this.isCreatingProduct = true;
+      this.productModal.show();
       // 裡面有之前編輯到一半的資料，而且不是 Edit 的內容
       const haveTempData =
         JSON.stringify(this.tempProduct) != "{}" &&
@@ -73,6 +74,7 @@ createApp({
     },
     showEditProduct(product) {
       this.isCreatingProduct = false;
+      this.productModal.show();
       this.tempImg = "";
       this.tempProduct = JSON.parse(JSON.stringify(product));
     },
@@ -126,6 +128,7 @@ createApp({
     },
     setDeleteProduct(product) {
       this.wantDeleteProduct = product;
+      this.delProductModal.show();
     },
     deleteProduct() {
       this.loading = true;
