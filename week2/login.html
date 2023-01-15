@@ -39,7 +39,12 @@
 
   <body>
     <div id="app">
-      <div v-cloak v-if="!initPage" class="container">
+      <div v-cloak v-if="initPage" class="container">
+        <span class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </span>
+      </div>
+      <div v-else>
         <div class="row justify-content-center">
           <h1 class="h3 mb-3 font-weight-normal">請先登入</h1>
           <div class="col-8">
@@ -81,11 +86,6 @@
           </div>
         </div>
         <p class="mt-5 mb-3 text-muted">&copy; 2021~∞ - 六角學院</p>
-      </div>
-      <div v-else>
-        <span class="spinner-border" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </span>
       </div>
     </div>
     <script

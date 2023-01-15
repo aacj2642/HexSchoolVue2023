@@ -16,7 +16,7 @@
 
   <body>
     <div id="app">
-      <div class="container">
+      <div v-cloak class="container">
         <div class="row py-3">
           <div class="col-md-6">
             <h2>產品列表</h2>
@@ -32,7 +32,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="product in products" :key="product.id">
+                <tr v-for="(product, id) in products" :key="id">
                   <td width="150">{{ product.title }}</td>
                   <td width="120">{{ product.origin_price }}</td>
                   <td width="120">{{ product.price }}</td>
@@ -48,17 +48,17 @@
                   <td width="120">{{ product.num }}</td>
                   <td width="120">
                     <button
-                      @click="checkProduct(product)"
+                      @click="viewProduct(product)"
                       type="button"
                       class="btn btn-primary"
                     >
-                      查看<br>細節
+                      查看<br />細節
                     </button>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <p>目前有 <span>{{ products.length }}</span> 項產品</p>
+            <p>目前有 <span>{{ productsAmount }}</span> 項產品</p>
           </div>
           <div class="col-md-6">
             <h2>單一產品細節</h2>
@@ -89,7 +89,7 @@
                   </div>
                 </div>
               </div>
-              <template v-for="image in nowProduct.imagesUrl">
+              <template v-for="image in nowProduct.imagesUrl" :key="image">
                 <img
                   :src="image"
                   :alt="nowProduct.category"
@@ -105,6 +105,12 @@
       </div>
     </div>
 
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
+      integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
       integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
