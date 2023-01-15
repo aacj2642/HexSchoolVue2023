@@ -16,7 +16,6 @@ createApp({
       this.nowProduct = product;
     },
     checkAuth() {
-      this.loading = true;
       let token = "";
       token = document.cookie.replace(
         /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
@@ -25,12 +24,12 @@ createApp({
       if (token.length != 0) {
         axios.defaults.headers.common["Authorization"] = token;
         this.checkToken();
-        this.loading = false;
       } else {
         window.location = "./login.html";
       }
     },
     checkToken() {
+      this.loading = true;
       axios
         .post(`${this.baseApiUrl}${this.checkUrl}`)
         .then((res) => {
@@ -46,6 +45,7 @@ createApp({
         });
     },
     getProducts() {
+      this.loading = true;
       axios
         .get(`${this.baseApiUrl}${this.getProductsUrl}`)
         .then((res) => {
@@ -53,6 +53,9 @@ createApp({
         })
         .catch((err) => {
           console.log(err.message);
+        })
+        .then((res) => {
+          this.loading = false;
         });
     },
   },

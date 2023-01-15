@@ -17,7 +17,16 @@
   <body>
     <div id="app">
       <div v-cloak class="container">
-        <div class="row py-3">
+        <div v-if="loading" class="container">
+          <span
+            class="spinner-border"
+            role="status"
+            style="position: absolute; top: 50vh; left: 50vw"
+          >
+            <span class="visually-hidden">Loading...</span>
+          </span>
+        </div>
+        <div v-else class="row py-3">
           <div class="col-md-6">
             <h2>產品列表</h2>
             <table class="table table-hover mt-4">
@@ -40,10 +49,10 @@
                     width="150"
                     @click="product.is_enabled = !product.is_enabled"
                   >
-                    <span v-if="product.is_enabled" class="text-success"
-                      >啟用</span
-                    >
-                    <span v-else>未啟用</span>
+                    <span
+                      class="text-success"
+                      v-text="product.is_enabled? '啟用' : '未啟用'"
+                    ></span>
                   </td>
                   <td width="120">{{ product.num }}</td>
                   <td width="120">
