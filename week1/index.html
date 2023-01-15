@@ -36,14 +36,12 @@
                   <td width="150">{{ product.title }}</td>
                   <td width="120">{{ product.origin_price }}</td>
                   <td width="120">{{ product.price }}</td>
-                  <td
-                    width="150"
-                    @click="product.is_enabled = !product.is_enabled"
-                  >
-                    <span v-if="product.is_enabled" class="text-success"
+                  <td width="150">
+                    <span
+                      v-text="product.is_enabled ? '啟用' : '未啟用'"
+                      class="text-success"
                       >啟用</span
                     >
-                    <span v-else>未啟用</span>
                   </td>
                   <td width="120">{{ product.num }}</td>
                   <td width="120">
