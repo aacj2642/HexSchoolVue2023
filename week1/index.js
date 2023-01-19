@@ -65,7 +65,6 @@ createApp({
   },
   methods: {
     checkProduct(product) {
-      console.log(123);
       this.nowProduct = product;
     },
   },
