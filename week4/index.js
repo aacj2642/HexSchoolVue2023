@@ -44,7 +44,7 @@ createApp({
           }
         })
         .catch((err) => {
-          alert(err.data.message);
+          alert(err.response.data.message);
           window.location = "./login.html";
         });
     },
@@ -56,7 +56,7 @@ createApp({
           this.products = res.data.products;
         })
         .catch((err) => {
-          alert(err.data.message);
+          alert(err.response.data.message);
         })
         .then((res) => {
           this.loading = false;
@@ -111,7 +111,7 @@ createApp({
           this.productModal.hide();
         })
         .catch((err) => {
-          alert(err.data.message);
+          alert(err.response.data.message);
         });
     },
     editProduct() {
@@ -124,7 +124,7 @@ createApp({
           this.productModal.hide();
         })
         .catch((err) => {
-          alert(err.data.message);
+          alert(err.response.data.message);
           this.loading = false;
         });
     },
@@ -143,7 +143,7 @@ createApp({
           this.delProductModal.hide();
         })
         .catch((err) => {
-          alert(err.data.message);
+          alert(err.response.data.message);
         });
     },
   },

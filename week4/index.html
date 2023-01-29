@@ -27,10 +27,7 @@
       <div v-cloak v-show="!loading">
         <div class="container">
           <div class="text-end mt-4">
-            <button
-              class="btn btn-primary"
-              @click="showCreateProduct()"
-            >
+            <button class="btn btn-primary" @click="showCreateProduct()">
               建立新的產品
             </button>
           </div>
@@ -78,6 +75,19 @@
               </tr>
             </tbody>
           </table>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="#">&lt;</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link active" href="#">1</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
+            </ul>
+          </nav>
         </div>
         <!-- Modal -->
         <div
