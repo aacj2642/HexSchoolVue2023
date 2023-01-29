@@ -26,7 +26,8 @@
       </div>
       <div v-cloak v-show="!loading">
         <div class="container">
-          <div class="text-end mt-4">
+          <div class="mt-4 d-flex justify-content-between align-items-end">
+            <span>⭐為店家推薦</span>
             <button class="btn btn-primary" @click="showCreateProduct()">
               建立新的產品
             </button>
@@ -45,7 +46,9 @@
             <tbody>
               <tr v-for="(product, id) in products" :key="id">
                 <td>{{ product.category }}</td>
-                <td>{{ product.title }}</td>
+                <td>
+                  <span v-if="product.recommend">⭐</span> {{ product.title }}
+                </td>
                 <td class="text-end">{{ product.origin_price }}</td>
                 <td class="text-end">{{ product.price }}</td>
                 <td>
@@ -75,23 +78,28 @@
               </tr>
             </tbody>
           </table>
-          <page-list
-            :pagination="pagination"
-            :now-page="nowPage"
-            :change-page="changePage"
-          ></page-list>
+          <page-list :pagination="pagination" :now-page="nowPage"></page-list>
         </div>
         <!-- Modal -->
         <product-editor
           :is-creating-product="isCreatingProduct"
           :temp-product="tempProduct"
           :set-product="setProduct"
+          :temp-img="tempImg"
+          :product-modal="productModal"
+          :upload-modal="uploadModal"
         ></product-editor>
 
         <delete-product
           :want-delete-product="wantDeleteProduct"
           :delete-product="deleteProduct"
         ></delete-product>
+
+        <upload-image
+          :upload-img="uploadImg"
+          :temp-upload-img="tempUploadImg"
+          :check-img="checkImg"
+        ></upload-image>
         <!-- Modal -->
       </div>
     </div>
@@ -113,6 +121,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./index.js"></script>
+    <script type="module" src="./index.js"></script>
   </body>
 </html>
