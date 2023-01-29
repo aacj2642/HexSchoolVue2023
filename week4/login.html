@@ -149,6 +149,8 @@
               "$1"
             );
             if (token.length != 0) {
+              // 如果已經有 token，驗證通過後就可以自動導頁
+              axios.defaults.headers.common["Authorization"] = token;
               this.checkToken();
             } else {
               this.initPage = false;
