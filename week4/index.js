@@ -1,9 +1,7 @@
-import {
-  PageList,
-  ProductEditor,
-  DeleteProduct,
-  UploadImage,
-} from "./components.js";
+import PageList from "./components/PageList.js";
+import ProductEditor from "./components/ProductEditor.js";
+import DeleteProduct from "./components/DeleteProduct.js";
+import UploadImage from "./components/UploadImage.js";
 
 const { createApp } = Vue;
 createApp({
@@ -190,7 +188,7 @@ createApp({
             alert("上傳成功");
             this.tempImg = res.data.imageUrl;
             this.tempProduct.imagesUrl.unshift(this.tempImg);
-            this.returnEdit();
+            this.uploadModal.hide();
           } else {
             alert(res.data.message);
           }
