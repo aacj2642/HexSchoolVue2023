@@ -149,7 +149,6 @@
               "$1"
             );
             if (token.length != 0) {
-              axios.defaults.headers.common["Authorization"] = token;
               this.checkToken();
             } else {
               this.initPage = false;
@@ -166,7 +165,7 @@
                 }
               })
               .catch((err) => {
-                console.log(err.message);
+                alert(err.data.message);
                 this.initPage = false;
               });
           },

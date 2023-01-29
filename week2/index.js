@@ -24,6 +24,7 @@ createApp({
         axios.defaults.headers.common["Authorization"] = token;
         this.checkToken();
       } else {
+        alert("尚未登入");
         window.location = "./login.html";
       }
     },
@@ -33,13 +34,14 @@ createApp({
         .post(`${this.baseApiUrl}${this.checkUrl}`)
         .then((res) => {
           if (!res.data.success) {
+            alert("尚未登入");
             window.location = "./login.html";
           } else {
             this.getProducts();
           }
         })
         .catch((err) => {
-          console.log(err.message);
+          alert(err.data.message);
           window.location = "./login.html";
         });
     },
@@ -51,7 +53,7 @@ createApp({
           this.products = res.data.products;
         })
         .catch((err) => {
-          console.log(err.message);
+          alert(err.data.message);
         })
         .then((res) => {
           this.loading = false;
