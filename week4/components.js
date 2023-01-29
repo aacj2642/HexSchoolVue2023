@@ -117,7 +117,7 @@ const ProductEditor = {
                   <img
                     v-for="(image, key) in tempProduct.imagesUrl"
                     :key="image"
-                    @click="tempImg = image"
+                    @click="setTempImg(image)"
                     class="img-fluid"
                     :src="image"
                     alt="'product image ' + key"
@@ -271,12 +271,15 @@ const ProductEditor = {
     "uploadModal",
   ],
   methods: {
+    setTempImg(image) {
+      this.$emit("update:tempImg", image);
+    },
     addImg() {
       if (!Array.isArray(this.tempProduct.imagesUrl)) {
         this.tempProduct.imagesUrl = [];
       }
       this.tempProduct.imagesUrl.unshift(this.tempImg);
-      this.tempImg = "";
+      this.$emit("update:tempImg", "");
     },
     removeImg() {
       const removeImgIndex = this.tempProduct.imagesUrl.indexOf(this.tempImg);
