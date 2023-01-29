@@ -14,7 +14,9 @@
   </head>
 
   <body>
-    <div id="app">{{message}}</div>
+    <div id="app">
+      <test></test>
+    </div>
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
@@ -35,13 +37,19 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
       const { createApp } = Vue;
-      createApp({
+      const app = createApp({
         data() {
           return {
             message: "Hello Vue!",
           };
         },
-      }).mount("#app");
+      });
+
+      app.component("test", {
+        template: "123456<br>",
+      });
+
+      app.mount("#app");
     </script>
   </body>
 </html>
