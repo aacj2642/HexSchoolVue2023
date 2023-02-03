@@ -3,6 +3,13 @@ import ProductEditor from "./components/ProductEditor.js";
 import DeleteProduct from "./components/DeleteProduct.js";
 import UploadImage from "./components/UploadImage.js";
 
+import {
+  checkUrl,
+  getProductsUrl,
+  operationProductsUrl,
+  uploadImageUrl,
+} from "../apiPath.js";
+
 const { createApp } = Vue;
 createApp({
   components: {
@@ -13,11 +20,6 @@ createApp({
   },
   data() {
     return {
-      baseApiUrl: "https://vue3-course-api.hexschool.io/v2/api/",
-      checkUrl: "user/check",
-      getProductsUrl: "weiyang/admin/products",
-      operationProductsUrl: "weiyang/admin/product",
-      uploadImageUrl: "weiyang/admin/upload",
       pagination: {},
       loading: false,
       nowPage: 1,
@@ -49,7 +51,7 @@ createApp({
     checkToken() {
       this.loading = true;
       axios
-        .post(`${this.baseApiUrl}${this.checkUrl}`)
+        .post(checkUrl)
         .then((res) => {
           if (!res.data.success) {
             alert("尚未登入");
@@ -71,7 +73,7 @@ createApp({
     getProducts() {
       this.loading = true;
       axios
-        .get(`${this.baseApiUrl}${this.getProductsUrl}`, {
+        .get(getProductsUrl, {
           params: { page: this.nowPage },
         })
         .then((res) => {
@@ -112,7 +114,7 @@ createApp({
       }
     },
     createdProduct() {
-      const url = `${this.baseApiUrl}${this.operationProductsUrl}`;
+      const url = operationProductsUrl;
       axios
         .post(url, { data: this.tempProduct })
         .then((res) => {
@@ -126,7 +128,7 @@ createApp({
         });
     },
     editProduct() {
-      const url = `${this.baseApiUrl}${this.operationProductsUrl}/${this.tempProduct.id}`;
+      const url = `${operationProductsUrl}/${this.tempProduct.id}`;
       axios
         .put(url, { data: this.tempProduct })
         .then((res) => {
@@ -145,7 +147,7 @@ createApp({
     },
     deleteProduct() {
       this.loading = true;
-      const url = `${this.baseApiUrl}${this.operationProductsUrl}/${this.wantDeleteProduct.id}`;
+      const url = `${operationProductsUrl}/${this.wantDeleteProduct.id}`;
       axios
         .delete(url)
         .then((res) => {
@@ -181,7 +183,7 @@ createApp({
       const formData = new FormData();
       formData.append("file-to-upload", file);
       axios
-        .post(`${this.baseApiUrl}${this.uploadImageUrl}`, formData)
+        .post(uploadImageUrl, formData)
         .then((res) => {
           console.log(res);
           if (res.data.success) {
