@@ -42,28 +42,25 @@ createApp({
       );
       if (token.length != 0) {
         axios.defaults.headers.common["Authorization"] = token;
-        this.checkToken();
+        this.loading = true;
+        axios
+          .post(checkUrl)
+          .then((res) => {
+            if (!res.data.success) {
+              alert("尚未登入");
+              window.location = "./login.html";
+            } else {
+              this.getProducts();
+            }
+          })
+          .catch((err) => {
+            alert(err.response.data.message);
+            window.location = "./login.html";
+          });
       } else {
         alert("尚未登入");
         window.location = "./login.html";
       }
-    },
-    checkToken() {
-      this.loading = true;
-      axios
-        .post(checkUrl)
-        .then((res) => {
-          if (!res.data.success) {
-            alert("尚未登入");
-            window.location = "./login.html";
-          } else {
-            this.getProducts();
-          }
-        })
-        .catch((err) => {
-          alert(err.response.data.message);
-          window.location = "./login.html";
-        });
     },
     checkPage() {
       const queryString = window.location.search;
