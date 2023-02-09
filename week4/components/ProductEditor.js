@@ -80,7 +80,7 @@ export default {
                       @click="setTempImg(image)"
                       class="img-fluid"
                       :src="image"
-                      alt="'product image ' + key"
+                      :alt="'product image ' + key"
                     />
                   </template>
                 </div>
@@ -146,7 +146,7 @@ export default {
                     </div>
                   </div>
                   <hr />
-    
+                  
                   <div class="mb-3">
                     <label for="description" class="form-label"
                       >產品描述</label

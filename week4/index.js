@@ -104,6 +104,7 @@ createApp({
     },
     setProduct() {
       this.loading = true;
+      this.tempProduct.imageUrl = this.tempProduct.imagesUrl[0];
       if (this.tempProduct.id === undefined) {
         this.createdProduct();
       } else {
