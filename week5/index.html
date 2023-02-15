@@ -96,6 +96,7 @@
           <!-- 購物車列表 -->
           <div class="text-end">
             <button
+              v-if="cart.total"
               class="btn btn-outline-danger"
               type="button"
               @click="deleteAllCarts"
@@ -175,12 +176,14 @@
           </table>
         </div>
 
+        <div v-if="!cart.total" class="text-end text-danger">購物車無商品</div>
+
         <!-- 購買表單 -->
         <div class="my-5 row justify-content-center">
           <v-form
             ref="form"
             class="col-md-6"
-            v-slot="{ errors }"
+            v-slot="{ errors, meta }"
             @submit="createOrder"
           >
             <div class="mb-3">
@@ -266,8 +269,9 @@
               ></textarea>
             </div>
             <div class="text-end">
+              <!-- 若是購物車有商品，且表單填寫過且驗證通過，才可以按按鈕 -->
               <button
-                :disabled="!cart.total"
+                :disabled="!(cart.total && meta.dirty && meta.valid)"
                 type="submit"
                 class="btn btn-danger"
               >
