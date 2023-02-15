@@ -8,7 +8,7 @@ export default {
         <h5 class="modal-title" id="productModal">
           <span>{{ product.title }}</span>
         </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white" @click="hideModal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -63,6 +63,7 @@ export default {
     },
     hideModal() {
       this.modal.hide();
+      this.qty = 1;
     },
   },
 };

@@ -167,7 +167,7 @@ const app = Vue.createApp({
           alert(err.response.data.message);
         });
     },
-    createOrder() {
+    createOrder(errors) {
       const order = this.form;
       if (this.cart.carts.length < 1) {
         alert("購物車為空，請加入商品");
@@ -178,6 +178,7 @@ const app = Vue.createApp({
         .then((response) => {
           alert(response.data.message);
           this.$refs.form.resetForm();
+          this.form.message = "";
           this.getCart();
         })
         .catch((err) => {
