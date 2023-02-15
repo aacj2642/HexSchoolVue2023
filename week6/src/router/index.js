@@ -1,17 +1,31 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      name: "home",
-      component: () => import("../views/HomeView.vue"),
+      name: "user",
+      component: () => import("../views/UserView.vue"),
+      children: [
+        {
+          path: "",
+          name: "index",
+          component: () => import("../views/userViews/IndexView.vue"),
+        },
+      ],
     },
     {
-      path: "/about",
-      name: "about",
-      component: () => import("../views/AboutView.vue"),
+      path: "/admin",
+      name: "admin",
+      component: () => import("../views/AdminView.vue"),
+      children: [
+        {
+          path: "login",
+          name: "login",
+          component: () => import("../views/adminViews/LoginView.vue"),
+        },
+      ],
     },
   ],
 });
