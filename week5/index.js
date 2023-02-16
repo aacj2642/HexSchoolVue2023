@@ -167,7 +167,7 @@ const app = Vue.createApp({
           alert(err.response.data.message);
         });
     },
-    createOrder(errors) {
+    createOrder() {
       const order = this.form;
       if (this.cart.carts.length < 1) {
         alert("購物車為空，請加入商品");
