@@ -12,7 +12,7 @@
         >原價 {{ product.origin_price }} 元</del
       >
       <div class="h5" v-if="product.price">現在只要 {{ product.price }} 元</div>
-      <!-- <div>
+      <div>
         <div class="input-group">
           <input
             type="number"
@@ -23,19 +23,19 @@
           <button
             type="button"
             class="btn btn-primary"
-            @click="$emit('add-to-cart', product.id, qty)"
+            @click="addToCart(product.id, qty)"
           >
             加入購物車
           </button>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from "pinia";
-import { userGetProductUrl } from "../../apiPath.js";
+import { userGetProductUrl, userOptCartUrl } from "../../apiPath.js";
 import appStore from "../../stores/appStore.js";
 export default {
   name: "ProductView",
@@ -43,6 +43,7 @@ export default {
   data() {
     return {
       product: [],
+      qty: 1,
     };
   },
   methods: {
@@ -57,6 +58,24 @@ export default {
         .catch((err) => {
           alert(err.response.data.message);
           this.$router.push(`/products`);
+        })
+        .then(() => {
+          this.setLoading(-1);
+        });
+    },
+    addToCart(id, qty = 1) {
+      this.setLoading(1);
+      const cart = {
+        product_id: id,
+        qty,
+      };
+      this.$http
+        .post(userOptCartUrl, { data: cart })
+        .then((response) => {
+          alert(response.data.message);
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
         })
         .then(() => {
           this.setLoading(-1);

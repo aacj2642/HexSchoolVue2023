@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
-  linkActiveClass: "bg-warning",
+  linkActiveClass: "text-success",
   routes: [
     {
       path: "/",
@@ -24,6 +24,11 @@ const router = createRouter({
           name: "product",
           component: () => import("../views/userViews/ProductView.vue"),
           props: true,
+        },
+        {
+          path: "cart",
+          name: "cart",
+          component: () => import("../views/userViews/CartView.vue"),
         },
       ],
     },

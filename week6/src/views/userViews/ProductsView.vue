@@ -36,14 +36,14 @@
               <i class="fas fa-spinner fa-pulse"></i>
               查看詳細
             </button>
-            <!-- <button
+            <button
               type="button"
               class="btn btn-outline-danger"
               @click="addToCart(product.id)"
             >
               <i class="fas fa-spinner fa-pulse"></i>
               加到購物車
-            </button> -->
+            </button>
           </div>
         </td>
       </tr>
@@ -53,7 +53,7 @@
 
 <script>
 import { mapActions } from "pinia";
-import { userGetProductsUrl } from "../../apiPath.js";
+import { userGetProductsUrl, userOptCartUrl } from "../../apiPath.js";
 import appStore from "../../stores/appStore.js";
 export default {
   name: "ProductView",
@@ -80,6 +80,24 @@ export default {
     },
     goToProduct(product) {
       this.$router.push(`/product/${product.id}`);
+    },
+    addToCart(id, qty = 1) {
+      this.setLoading(1);
+      const cart = {
+        product_id: id,
+        qty,
+      };
+      this.$http
+        .post(userOptCartUrl, { data: cart })
+        .then((response) => {
+          alert(response.data.message);
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        })
+        .then(() => {
+          this.setLoading(-1);
+        });
     },
   },
   mounted() {
