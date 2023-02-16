@@ -3,8 +3,9 @@
     <h2 class="text-center">前台頁面</h2>
     <header class="mb-2">
       <nav class="d-flex justify-content-center">
-        <RouterLink to="/">前台首頁</RouterLink> |
-        <RouterLink to="/admin/login">登入</RouterLink> |
+        <RouterLink class="px-3" to="/">前台首頁</RouterLink> |
+        <RouterLink class="px-3" to="/products">產品列表</RouterLink> |
+        <RouterLink class="px-3" to="/admin/login">登入</RouterLink> |
       </nav>
     </header>
     <RouterView />

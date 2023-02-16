@@ -9,6 +9,9 @@ import router from "./router";
 
 import "./assets/all.scss";
 
+// bootstrap js 全局使用
+import "bootstrap";
+
 const app = createApp(App);
 
 app.use(createPinia());

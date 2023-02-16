@@ -13,6 +13,17 @@ const router = createRouter({
           name: "index",
           component: () => import("../views/userViews/IndexView.vue"),
         },
+        {
+          path: "products",
+          name: "products",
+          component: () => import("../views/userViews/ProductsView.vue"),
+        },
+        {
+          path: "product/:productId",
+          name: "product",
+          component: () => import("../views/userViews/ProductView.vue"),
+          props: true,
+        },
       ],
     },
     {
@@ -26,6 +37,11 @@ const router = createRouter({
           component: () => import("../views/adminViews/LoginView.vue"),
         },
       ],
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "404",
+      component: () => import("../views/UserView.vue"),
     },
   ],
 });

@@ -1,5 +1,7 @@
-const baseApiUrl = `https://vue3-course-api.hexschool.io/v2/api`;
-const apiName = `weiyang`;
+const { VITE_API, VITE_API_PATH } = import.meta.env;
+
+const baseApiUrl = VITE_API;
+const apiName = VITE_API_PATH;
 const urlStart = `${baseApiUrl}/${apiName}`;
 const checkUrl = `${baseApiUrl}/user/check`;
 const getProductsUrl = `${urlStart}/admin/products`;
