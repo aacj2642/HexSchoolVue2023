@@ -1,1 +1,0 @@
-const{VITE_API:o,VITE_API_PATH:s}={VITE_API:"https://vue3-course-api.hexschool.io/v2/api",VITE_API_PATH:"weiyang",BASE_URL:"/HexSchoolVue2023/week6/dist/",MODE:"production",DEV:!1,PROD:!0},e=o,r=s,t=`${e}/${r}`,c=`${t}/products`,u=`${t}/product`;export{u as a,c as u};
