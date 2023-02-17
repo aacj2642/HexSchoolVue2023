@@ -91,7 +91,7 @@
           placeholder="請輸入 Email"
           rules="email|required"
         ></VField>
-        <error-message name="email" class="invalid-feedback"></error-message>
+        <ErrorMessage name="email" class="invalid-feedback" />
       </div>
 
       <div class="mb-3">
@@ -106,7 +106,7 @@
           placeholder="請輸入姓名"
           rules="required"
         ></VField>
-        <error-message name="姓名" class="invalid-feedback"></error-message>
+        <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
       </div>
 
       <div class="mb-3">
@@ -121,7 +121,7 @@
           placeholder="請輸入電話"
           rules="required|min:8|max:10"
         ></VField>
-        <error-message name="電話" class="invalid-feedback"></error-message>
+        <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
       </div>
 
       <div class="mb-3">
@@ -136,7 +136,7 @@
           placeholder="請輸入地址"
           rules="required"
         ></VField>
-        <error-message name="地址" class="invalid-feedback"></error-message>
+        <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
       </div>
 
       <div class="mb-3">

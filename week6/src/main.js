@@ -14,19 +14,20 @@ import "bootstrap";
 
 import { defineRule, Form, Field, ErrorMessage, configure } from "vee-validate";
 import { required, email, min, max } from "@vee-validate/rules";
-import { localize, loadLocaleFromURL } from "@vee-validate/i18n";
 
 defineRule("required", required);
 defineRule("email", email);
 defineRule("min", min);
 defineRule("max", max);
 
-loadLocaleFromURL("./i18n/zh_TW.json");
+import { localize, setLocale } from "@vee-validate/i18n";
+import zh_TW from "@vee-validate/i18n/dist/locale/zh_TW.json";
 
 configure({
-  generateMessage: localize("zh_TW"),
-  validateOnInput: true,
+  generateMessage: localize({ zh_TW }), // 載入繁體中文語系
+  validateOnInput: true, // 當輸入任何內容直接進行驗證
 });
+setLocale("zh_TW");
 
 const app = createApp(App);
 
