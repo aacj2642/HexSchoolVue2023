@@ -1,0 +1,8 @@
+@import "bootstrap/scss/functions";
+@import "./_customVariables";
+
+@import "bootstrap/scss/bootstrap.scss";
+
+[v-cloak] {
+    display: none;
+}
