@@ -1,7 +1,7 @@
 <template>
   <VueLoading v-model:active="isLoading"></VueLoading>
   <div class="container">
-    <h1 class="text-center">第六周作業</h1>
+    <h1 class="text-center">第七周作業</h1>
     <RouterView />
   </div>
 </template>

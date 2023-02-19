@@ -4,8 +4,8 @@
     <header class="mb-2">
       <nav class="d-flex justify-content-center">
         <RouterLink class="px-3" to="/">前台首頁</RouterLink> |
-        <RouterLink class="px-3" to="/admin/products/1">管理產品</RouterLink> |
-        <RouterLink class="px-3" to="/admin/orders/1">管理訂單</RouterLink> |
+        <RouterLink class="px-3" to="/admin/products">管理產品</RouterLink> |
+        <RouterLink class="px-3" to="/admin/orders">管理訂單</RouterLink> |
         <a v-if="isLogin" class="px-3" href="#" @click.prevent="logout">登出</a>
         <RouterLink v-else class="px-3" to="/admin/login">登入</RouterLink>
         |

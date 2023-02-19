@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
-  linkExactActiveClass: "text-success",
+  linkActiveClass: "text-success",
   routes: [
     {
       path: "/",
@@ -46,23 +46,27 @@ const router = createRouter({
           path: "products",
           name: "productsDefault",
           redirect: "/admin/products/1",
-        },
-        {
-          path: "products/:nowPage",
-          name: "products",
-          component: () => import("../views/adminViews/ProductsView.vue"),
-          props: true,
+          children: [
+            {
+              path: ":nowPage",
+              name: "products",
+              component: () => import("../views/adminViews/ProductsView.vue"),
+              props: true,
+            },
+          ],
         },
         {
           path: "orders",
           name: "ordersDefault",
           redirect: "/admin/orders/1",
-        },
-        {
-          path: "orders/:nowPage",
-          name: "orders",
-          component: () => import("../views/adminViews/OrdersView.vue"),
-          props: true,
+          children: [
+            {
+              path: ":nowPage",
+              name: "orders",
+              component: () => import("../views/adminViews/OrdersView.vue"),
+              props: true,
+            },
+          ],
         },
       ],
     },
