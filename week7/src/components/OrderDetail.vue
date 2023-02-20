@@ -23,7 +23,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-sm-12 col-lg-4">
               <h3>用戶資料</h3>
               <table class="table">
                 <tbody v-if="tempOrder.user">
@@ -46,7 +46,7 @@
                 </tbody>
               </table>
             </div>
-            <div class="col-md-8">
+            <div class="col">
               <h3>訂單細節</h3>
               <table class="table">
                 <tbody>
@@ -56,13 +56,13 @@
                   </tr>
                   <tr>
                     <th>下單時間</th>
-                    <td>{{ $filters.date(tempOrder.create_at) }}</td>
+                    <td>{{ setDate(tempOrder.create_at) }}</td>
                   </tr>
                   <tr>
                     <th>付款時間</th>
                     <td>
                       <span v-if="tempOrder.paid_date">
-                        {{ $filters.date(tempOrder.paid_date) }}
+                        {{ setDate(tempOrder.paid_date) }}
                       </span>
                       <span v-else>時間不正確</span>
                     </td>
@@ -79,7 +79,7 @@
                   <tr>
                     <th>總金額</th>
                     <td>
-                      {{ $filters.currency(tempOrder.total) }}
+                      {{ tempOrder.total }}
                     </td>
                   </tr>
                 </tbody>
@@ -96,7 +96,7 @@
                     </th>
                     <td>{{ item.qty }} / {{ item.product.unit }}</td>
                     <td class="text-end">
-                      {{ $filters.currency(item.final_total) }}
+                      {{ item.final_total }}
                     </td>
                   </tr>
                 </tbody>
@@ -130,7 +130,7 @@
           <button
             type="button"
             class="btn btn-primary"
-            @click="$emit('update-paid', tempOrder)"
+            @click="$emit('updatePaid', tempOrder)"
           >
             修改付款狀態
           </button>
@@ -140,7 +140,8 @@
   </div>
 </template>
 <script>
-import Modal from "bootstrap";
+import { Modal } from "bootstrap";
+import moment from "moment";
 export default {
   props: {
     order: {
@@ -158,6 +159,9 @@ export default {
     };
   },
   methods: {
+    setDate(time) {
+      return moment.unix(time).format("YYYY/MM/DD HH:mm:ss");
+    },
     openModal() {
       this.modal.show();
     },
@@ -166,12 +170,12 @@ export default {
     },
   },
   watch: {
-    order() {
-      this.tempOrder = this.order;
+    order(val) {
+      this.tempOrder = { ...val };
     },
   },
   mounted() {
-    this.modal = Modal(this.$refs.modal, {
+    this.modal = new Modal(this.$refs.modal, {
       keyboard: false,
       backdrop: "static",
     });

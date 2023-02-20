@@ -46,7 +46,11 @@
             </td>
             <td>
               <div class="btn-group">
-                <button class="btn btn-outline-primary btn-sm" type="button">
+                <button
+                  class="btn btn-outline-primary btn-sm"
+                  type="button"
+                  @click="openOrderDetail(order)"
+                >
                   檢視
                 </button>
                 <button
@@ -68,11 +72,14 @@
       nowView="/admin/orders"
     ></PageList>
   </div>
+  <OrderDetail :order="tempOrder" @updatePaid="updatePaid" ref="orderDetail">
+  </OrderDetail>
 </template>
 
 <script>
 import moment from "moment";
 import PageList from "../../components/PageList.vue";
+import OrderDetail from "../../components/OrderDetail.vue";
 import Swal from "sweetalert2";
 import { mapActions } from "pinia";
 import appStore from "../../stores/appStore.js";
@@ -82,11 +89,13 @@ import { checkUrl, getOrdersUrl, operationOrdersUrl } from "../../apiPath.js";
 export default {
   components: {
     PageList,
+    OrderDetail,
   },
   data() {
     return {
       pagination: {},
       orders: [],
+      tempOrder: {},
     };
   },
   props: ["nowPage"],
@@ -173,8 +182,10 @@ export default {
     },
     updatePaid(order) {
       this.setLoading(1);
+      order.paid_date = order.is_paid ? Math.floor(Date.now() / 1000) : "";
       const paid = {
         is_paid: order.is_paid,
+        paid_date: order.paid_date,
       };
       this.$http
         .put(`${operationOrdersUrl}/${order.id}`, { data: paid })
@@ -201,7 +212,6 @@ export default {
           );
         })
         .join("");
-      console.log(orderItems);
       const deleteInfo = `
       <div>訂單時間:${this.setDate(order.create_at)}</div>
       <div>付款狀態:${order.is_paid ? "付款" : "未付款"}</div>
@@ -241,6 +251,10 @@ export default {
             });
         }
       });
+    },
+    openOrderDetail(order) {
+      this.tempOrder = order;
+      this.$refs.orderDetail.openModal();
     },
   },
   watch: {

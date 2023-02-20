@@ -287,7 +287,6 @@ export default {
         const reader = new FileReader();
         // 這會在readAS後才執行
         reader.onload = (e) => {
-          // console.log('file:', e.target.result); // base64
           this.tempUploadImg = e.target.result;
         };
 
