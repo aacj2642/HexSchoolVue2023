@@ -191,6 +191,8 @@ export default {
         .put(`${operationOrdersUrl}/${order.id}`, { data: paid })
         .then(() => {
           alert("更新付款狀態");
+          this.$refs.orderDetail.hideModal();
+          this.getOrders();
         })
         .catch((err) => {
           alert(err.response.data.message);

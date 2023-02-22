@@ -16,6 +16,7 @@
         <th>品名</th>
         <th style="width: 150px">數量/單位</th>
         <th>單價</th>
+        <th>總價</th>
       </tr>
     </thead>
     <tbody>
@@ -52,6 +53,9 @@
             </div>
           </td>
           <td class="text-end">
+            {{ item.product.price }}
+          </td>
+          <td class="text-end">
             <small v-if="cart.final_total !== cart.total" class="text-success"
               >折扣價：</small
             >
@@ -62,11 +66,11 @@
     </tbody>
     <tfoot>
       <tr>
-        <td colspan="3" class="text-end">總計</td>
+        <td colspan="4" class="text-end">總計</td>
         <td class="text-end">{{ cart.total }}</td>
       </tr>
       <tr v-if="cart.final_total !== cart.total">
-        <td colspan="3" class="text-end text-success">折扣價</td>
+        <td colspan="4" class="text-end text-success">折扣價</td>
         <td class="text-end text-success">{{ cart.final_total }}</td>
       </tr>
     </tfoot>
